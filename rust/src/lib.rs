@@ -3,7 +3,7 @@ mod programs;
 #[cfg(test)]
 mod tests {
 
-    use crate::programs::Turbin3_prereq::{CompleteArgs, UpdateArgs, WbaPrereqProgram};
+    use crate::programs::turbin3_prereq::{CompleteArgs, WbaPrereqProgram};
     use bs58;
     use solana_client::rpc_client::RpcClient;
     use solana_program::{pubkey::Pubkey, system_instruction::transfer};
@@ -51,7 +51,7 @@ mod tests {
     }
     #[test]
     fn airdrop() {
-        let keypair = read_keypair_file("dev-wallet.json").expect("Couldn't read wallet file");
+        let keypair = read_keypair_file("mykeygen.json").expect("Couldn't read wallet file");
         let client = RpcClient::new(RPC_URL);
         match client.request_airdrop(&keypair.pubkey(), 2_000_000_000u64) {
             Ok(sig) => {
@@ -68,8 +68,8 @@ mod tests {
     }
     #[test]
     fn transfer_sol() {
-        let keypair = read_keypair_file("dev-wallet.json").expect("Couldn't read wallet file");
-        let to_pubkey = Pubkey::from_str("7MBcR9GQs94CWwL2SwzgSuhTa8guzb1dAVTDPCpnFzr9").unwrap();
+        let keypair = read_keypair_file("mykeygen.json").expect("Couldn't read wallet file");
+        let to_pubkey = Pubkey::from_str("Er5Wm5aEBhqaA1ypkVz7oizasdC7dUmVyAMSMy1Kmmjy").unwrap();
         let rpc_client = RpcClient::new(RPC_URL);
         // get balance on dev wallet
         let balance = rpc_client.get_balance(&keypair.pubkey()).expect("Failed to get balance");
